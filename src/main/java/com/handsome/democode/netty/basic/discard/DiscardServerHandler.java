@@ -1,4 +1,4 @@
-package com.handsome.democode.netty;
+package com.handsome.democode.netty.basic.discard;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;

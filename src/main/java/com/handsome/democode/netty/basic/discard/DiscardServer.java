@@ -1,4 +1,4 @@
-package com.handsome.democode.netty;
+package com.handsome.democode.netty.basic.discard;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
