@@ -31,7 +31,10 @@ public class TimeServer {
                     .option(ChannelOption.SO_BACKLOG, 1024)
                     .childHandler(new ChildChannelHandler());
             ChannelFuture future = bootstrap.bind(port).sync();
-            future.channel().closeFuture().sync();
+            Channel channel = future.channel();
+            ChannelFuture future1 = channel.closeFuture();
+            future1.sync();
+            System.out.println("end");
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
