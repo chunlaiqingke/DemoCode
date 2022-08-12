@@ -9,7 +9,7 @@ public class ClientHandler extends ChannelHandlerAdapter {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        byte[] req = "Discard client request \n".getBytes();
+        byte[] req = "Discard client request \n Discard client request 2 \n".getBytes();
         ByteBuf buffer = Unpooled.buffer(req.length);
         buffer.writeBytes(req);
         ctx.writeAndFlush(buffer);
