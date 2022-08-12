@@ -29,17 +29,6 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
     }
 
     @Override
-    protected void messageReceived(ChannelHandlerContext ctx, Object msg) throws Exception {
-        if(msg instanceof FullHttpRequest){
-            handlerHttpRequest(ctx, (FullHttpRequest) msg);
-        }
-
-        else if(msg instanceof WebSocketFrame) {
-            handlerWebSocketFrame(ctx, (WebSocketFrame)msg);
-        }
-    }
-
-    @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
         ctx.flush();
     }
@@ -88,6 +77,17 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
         ChannelFuture future = ctx.channel().writeAndFlush(res);
         if(!isKeepAlive(req) || res.getStatus().code() != 200) {
             future.addListener(ChannelFutureListener.CLOSE);
+        }
+    }
+
+    @Override
+    protected void messageReceived(ChannelHandlerContext ctx, Object msg) throws Exception {
+        if(msg instanceof FullHttpRequest){
+            handlerHttpRequest(ctx, (FullHttpRequest) msg);
+        }
+
+        else if(msg instanceof WebSocketFrame) {
+            handlerWebSocketFrame(ctx, (WebSocketFrame)msg);
         }
     }
 }

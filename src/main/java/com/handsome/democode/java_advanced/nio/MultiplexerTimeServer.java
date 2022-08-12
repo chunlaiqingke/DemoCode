@@ -33,13 +33,15 @@ public class MultiplexerTimeServer implements Runnable{
     @Override
     public void run() {
         try {
-            selector.select(1000);
-            Set<SelectionKey> selectionKeys = selector.selectedKeys();
-            Iterator<SelectionKey> iterator = selectionKeys.iterator();
-            while(iterator.hasNext()){
-                SelectionKey key = iterator.next();
-                iterator.remove();
-                handle(key);
+            while (!Thread.interrupted()) {
+                selector.select(1000);
+                Set<SelectionKey> selectionKeys = selector.selectedKeys();
+                Iterator<SelectionKey> iterator = selectionKeys.iterator();
+                while(iterator.hasNext()){
+                    SelectionKey key = iterator.next();
+                    iterator.remove();
+                    handle(key);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -51,9 +53,9 @@ public class MultiplexerTimeServer implements Runnable{
             if(key.isAcceptable()) {
 
                 ServerSocketChannel channel = (ServerSocketChannel)key.channel();
-                SocketChannel accept = channel.accept();
-                accept.configureBlocking(false);
-                channel.register(selector, SelectionKey.OP_READ);
+                SocketChannel acceptChannel = channel.accept();
+                acceptChannel.configureBlocking(false);
+                acceptChannel.register(selector, SelectionKey.OP_READ);
 
             } else if (key.isReadable()) {
                 SocketChannel channel = (SocketChannel)key.channel();

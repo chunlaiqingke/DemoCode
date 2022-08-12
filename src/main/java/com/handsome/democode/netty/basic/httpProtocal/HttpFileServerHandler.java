@@ -8,16 +8,16 @@ import io.netty.handler.codec.http.HttpResponseStatus;
 import static io.netty.handler.codec.http.HttpResponseStatus.BAD_REQUEST;
 
 public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
-    @Override
-    protected void messageReceived(ChannelHandlerContext ctx, FullHttpRequest request) throws Exception {
-        if(request.getDecoderResult().isSuccess()) {
-            sendError(ctx, BAD_REQUEST);
-            return;
-        }
-
-    }
 
     private void sendError(ChannelHandlerContext ctx, HttpResponseStatus badRequest) {
 
+    }
+
+    @Override
+    protected void messageReceived(ChannelHandlerContext ctx, FullHttpRequest msg) throws Exception {
+        if(msg.getDecoderResult().isSuccess()) {
+            sendError(ctx, BAD_REQUEST);
+            return;
+        }
     }
 }
