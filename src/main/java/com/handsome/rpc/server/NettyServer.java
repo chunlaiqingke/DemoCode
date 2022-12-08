@@ -4,7 +4,7 @@ import com.handsome.rpc.common.RpcDecoder;
 import com.handsome.rpc.common.RpcEncoder;
 import com.handsome.rpc.common.param.RpcRequest;
 import com.handsome.rpc.common.param.RpcResponse;
-import com.handsome.rpc.common.serializer.KryoSerializer;
+import com.handsome.rpc.core.serializer.KryoSerializer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;

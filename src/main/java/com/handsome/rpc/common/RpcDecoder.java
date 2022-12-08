@@ -1,6 +1,6 @@
 package com.handsome.rpc.common;
 
-import com.handsome.rpc.common.serializer.Serializer;
+import com.handsome.rpc.core.serializer.CommonSerializer;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
@@ -10,9 +10,9 @@ import java.util.List;
 public class RpcDecoder extends ByteToMessageDecoder {
 
     private Class<?> className;
-    private Serializer serializer;
+    private CommonSerializer serializer;
 
-    public RpcDecoder(Serializer serializer, Class<?> className){
+    public RpcDecoder(CommonSerializer serializer, Class<?> className){
         this.serializer = serializer;
         this.className = className;
     }
