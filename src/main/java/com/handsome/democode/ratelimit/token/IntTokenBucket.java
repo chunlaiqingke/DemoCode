@@ -1,4 +1,4 @@
-package com.handsome.democode.ratelimit;
+package com.handsome.democode.ratelimit.token;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;

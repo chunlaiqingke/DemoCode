@@ -1,4 +1,4 @@
-package com.handsome.democode.ratelimit;
+package com.handsome.democode.ratelimit.funnel;
 
 import java.util.HashMap;
 import java.util.Map;

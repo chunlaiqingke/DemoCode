@@ -1,4 +1,4 @@
-package com.handsome.democode.ratelimit;
+package com.handsome.democode.ratelimit.token;
 
 public class TokenBucketBuilder {
     //一个桶的单位是一个字节

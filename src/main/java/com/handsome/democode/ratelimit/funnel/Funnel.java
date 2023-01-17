@@ -1,4 +1,4 @@
-package com.handsome.democode.ratelimit;
+package com.handsome.democode.ratelimit.funnel;
 
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -52,12 +52,17 @@ public class Funnel {
     }
 
     public boolean watering(int quota){
-        makeSpace();
-        int left = leftQuota - quota;
-        if(left >= 0) {
-            leftQuota = left;
-            return true;
+        try {
+            lock.lock();
+            makeSpace();
+            int left = leftQuota - quota;
+            if(left >= 0) {
+                leftQuota = left;
+                return true;
+            }
+            return false;
+        } finally {
+            lock.unlock();
         }
-        return false;
     }
 }
