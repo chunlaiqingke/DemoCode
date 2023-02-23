@@ -17,6 +17,14 @@ public class PersonClassloader extends ClassLoader {
         System.out.println(obj.getClass().getClassLoader());
     }
 
+    /**
+     * 使用双亲委派，重写这个方法
+     * @param name
+     *         The <a href="#name">binary name</a> of the class
+     *
+     * @return
+     * @throws ClassNotFoundException
+     */
     @Override
     protected Class<?> findClass(String name) throws ClassNotFoundException {
         try {
@@ -28,5 +36,10 @@ public class PersonClassloader extends ClassLoader {
             e.printStackTrace();
         }
         return super.findClass(name);
+    }
+
+    @Override
+    public Class<?> loadClass(String name) throws ClassNotFoundException {
+        return super.loadClass(name);
     }
 }

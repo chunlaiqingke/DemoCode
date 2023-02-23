@@ -2,6 +2,9 @@ package com.handsome.democode.ratelimit.funnel;
 
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * 漏斗模型的限流设计，和常规线程池和队列的异步实现方式，这个是同步的
+ */
 public class Funnel {
 
     /**

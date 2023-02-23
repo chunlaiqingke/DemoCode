@@ -34,7 +34,7 @@ public class Producer {
     public static void main(String[] args) {
         new Thread(() -> {
             Producer producer = new Producer();
-            for(int i = 0; i < 10000; i++) {
+            for(int i = 0; i < 100000; i++) {
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {

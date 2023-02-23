@@ -1,5 +1,6 @@
 package com.handsome.democode.ratelimit.funnel;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,21 +19,22 @@ public class FunnelRateLimiter {
 
     public static void main(String[] args) throws InterruptedException {
         FunnelRateLimiter rateLimiter = new FunnelRateLimiter();
-        int testAccessCount = 30;
+        int testAccessCount = 30000000;
         int capacity = 5;
         int allowQuota = 5;
-        int perSecond = 30;
+        int perSecond = 1;
         int allowCount = 0;
         int denyCount = 0;
         for(int i = 0; i < testAccessCount ; i++) {
             boolean actionAllowed = rateLimiter.isActionAllowed("user", "dosomething", capacity, allowQuota, perSecond);
             if(actionAllowed) {
                 allowCount++;
+                System.out.println("时间" + new Date() + ", allowCount: " + allowCount);
             } else {
                 denyCount ++;
             }
-            System.out.println("访问权限：" + actionAllowed);
-            Thread.sleep(1000);
+//            System.out.println("访问权限：" + actionAllowed + "， 拒绝数量：" + denyCount + "， 允许数量：" + allowCount);
+//            Thread.sleep(50);
         }
     }
 }
