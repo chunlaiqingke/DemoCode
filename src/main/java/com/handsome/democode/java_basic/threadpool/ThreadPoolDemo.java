@@ -1,9 +1,6 @@
 package com.handsome.democode.java_basic.threadpool;
 
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 public class ThreadPoolDemo implements Runnable {
 
@@ -25,7 +22,7 @@ public class ThreadPoolDemo implements Runnable {
     }
 
     public static void main(String[] args) {
-        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(2, 2, 0l, TimeUnit.MILLISECONDS,
+        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(2, 10, 0l, TimeUnit.MILLISECONDS,
                 new ArrayBlockingQueue<>(2),
                 Executors.defaultThreadFactory(),
                 new ThreadPoolExecutor.CallerRunsPolicy());

@@ -15,6 +15,6 @@ public class InterruptDemo {
         });
         thread.start();
         Thread.sleep(5000);
-        thread.interrupt();
+        thread.stop();
     }
 }
