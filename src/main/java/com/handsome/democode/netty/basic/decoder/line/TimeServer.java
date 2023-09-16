@@ -11,7 +11,6 @@ import io.netty.handler.codec.LineBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 
 import java.util.Date;
-
 public class TimeServer {
 
     private static final int port = 8080;
@@ -63,6 +62,11 @@ public class TimeServer {
             currentTime = currentTime + System.getProperty("line.separator");
             ByteBuf byteBuf = Unpooled.copiedBuffer(currentTime.getBytes());
             ctx.writeAndFlush(byteBuf);
+        }
+
+        @Override
+        public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
+            ServerContains.registerChannel(ctx.channel());
         }
 
         @Override
